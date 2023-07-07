@@ -12,7 +12,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Netflix</h1>
-      <Banner />
+      <Banner
+        imgUrl="/static/clifford.webp"
+        subTitle="A Very Cute Dog"
+        title="Clifford the Red Dog"
+      />
     </div>
   );
 }
