@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import styles from "./Banner.module.css";
+import styles from "./banner.module.css";
 
 const Banner = ({ imgUrl, subTitle, title }) => {
   const handleOnPlay = () => console.log("playing");
