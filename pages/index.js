@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import Banner from "@/components/banner/banner";
-import NavBar from "@/components/navbar/NavBar";
+import NavBar from "@/components/navbar/navbar";
 
 import styles from "@/styles/Home.module.css";
 

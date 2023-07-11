@@ -9,10 +9,13 @@ const NavBar = ({ username }) => {
         <Link className={styles.logoLink} href="/">
           <div className={styles.logoWrapper}>Netflix</div>
         </Link>
-
         <ul className={styles.navItems}>
-          <li className={styles.navItem}>Home</li>
-          <li className={styles.navItem2}>My List</li>
+          <Link className={styles.navItem} href="/">
+            Home
+          </Link>
+          <Link className={styles.navItem2} href="/browse/my-list">
+            My List
+          </Link>
         </ul>
         <nav className={styles.navContainer}>
           <div>
@@ -22,7 +25,9 @@ const NavBar = ({ username }) => {
             </button>
             <div className={styles.navDropdown}>
               <div>
-                <a className={styles.linkName}>Sign Out</a>
+                <Link className={styles.linkName} href="/login">
+                  Sign Out
+                </Link>
                 <div className={styles.lineWrapper} />
               </div>
             </div>
