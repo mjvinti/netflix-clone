@@ -20,7 +20,7 @@ export default function Home() {
         title="Clifford the Red Dog"
       />
       <Card imgUrl="/static/clifford.webp" size="large" />
-      <Card imgUrl="/static/clifford.webp" size="medium" />
+      <Card size="medium" />
       <Card imgUrl="/static/clifford.webp" size="small" />
     </div>
   );
