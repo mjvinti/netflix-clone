@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import Banner from "@/components/banner/banner";
+import Card from "@/components/card/card";
 import NavBar from "@/components/navbar/navbar";
 
 import styles from "@/styles/Home.module.css";
@@ -18,6 +19,9 @@ export default function Home() {
         subTitle="A Very Cute Dog"
         title="Clifford the Red Dog"
       />
+      <Card imgUrl="/static/clifford.webp" size="large" />
+      <Card imgUrl="/static/clifford.webp" size="medium" />
+      <Card imgUrl="/static/clifford.webp" size="small" />
     </div>
   );
 }
