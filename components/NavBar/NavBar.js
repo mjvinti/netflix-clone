@@ -1,8 +1,13 @@
+import { useState } from "react";
 import Link from "next/link";
 
 import styles from "./navbar.module.css";
 
 const NavBar = ({ username }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleOnClick = () => setShowDropdown(!showDropdown);
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -19,18 +24,20 @@ const NavBar = ({ username }) => {
         </ul>
         <nav className={styles.navContainer}>
           <div>
-            <button className={styles.usernameBtn}>
+            <button className={styles.usernameBtn} onClick={handleOnClick}>
               <p className={styles.username}>{username}</p>
               {/* expand more icon here */}
             </button>
-            <div className={styles.navDropdown}>
-              <div>
-                <Link className={styles.linkName} href="/login">
-                  Sign Out
-                </Link>
-                <div className={styles.lineWrapper} />
+            {showDropdown && (
+              <div className={styles.navDropdown}>
+                <div>
+                  <Link className={styles.linkName} href="/login">
+                    Sign Out
+                  </Link>
+                  <div className={styles.lineWrapper} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </nav>
       </div>
