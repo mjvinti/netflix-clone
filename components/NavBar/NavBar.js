@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./navbar.module.css";
@@ -12,7 +13,14 @@ const NavBar = ({ username }) => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <Link className={styles.logoLink} href="/">
-          <div className={styles.logoWrapper}>Netflix</div>
+          <div className={styles.logoWrapper}>
+            <Image
+              alt="netflix logo"
+              height={34}
+              src="/static/netflix.svg"
+              width={128}
+            />
+          </div>
         </Link>
         <ul className={styles.navItems}>
           <Link className={styles.navItem} href="/">
@@ -26,7 +34,12 @@ const NavBar = ({ username }) => {
           <div>
             <button className={styles.usernameBtn} onClick={handleOnClick}>
               <p className={styles.username}>{username}</p>
-              {/* expand more icon here */}
+              <Image
+                alt="expand dropdown"
+                height={24}
+                src="/static/expand_more.svg"
+                width={24}
+              />
             </button>
             {showDropdown && (
               <div className={styles.navDropdown}>
