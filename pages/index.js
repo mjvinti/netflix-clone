@@ -19,7 +19,9 @@ export default function Home() {
         subTitle="A Very Cute Dog"
         title="Clifford the Red Dog"
       />
-      <SectionCards title="Disney" />
+      <div className={styles.sectionWrapper}>
+        <SectionCards title="Disney" />
+      </div>
     </div>
   );
 }
