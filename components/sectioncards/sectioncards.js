@@ -2,15 +2,15 @@ import Card from "../card/card";
 
 import styles from "./sectioncards.module.css";
 
-const SectionCards = ({ title }) => {
-  const cards = Array.from(Array(10)).map((_, i) => (
-    <Card id={i} imgUrl="/static/clifford.webp" key={i} size="large" />
-  ));
-
+const SectionCards = ({ size, title, videos }) => {
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>{title}</h2>
-      <div className={styles.cardWrapper}>{cards.map((card) => card)}</div>
+      <div className={styles.cardWrapper}>
+        {videos.map((video, i) => (
+          <Card id={i} imgUrl={video.imgUrl} key={i} size={size} />
+        ))}
+      </div>
     </section>
   );
 };

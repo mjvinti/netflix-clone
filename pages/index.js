@@ -7,6 +7,10 @@ import SectionCards from "@/components/sectioncards/sectioncards";
 import styles from "@/styles/Home.module.css";
 
 export default function Home() {
+  const disneyVideos = Array.from(Array(10)).map((_, i) => ({
+    imgUrl: "/static/clifford.webp",
+  }));
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +24,8 @@ export default function Home() {
         title="Clifford the Red Dog"
       />
       <div className={styles.sectionWrapper}>
-        <SectionCards title="Disney" />
+        <SectionCards size="large" title="Disney" videos={disneyVideos} />
+        <SectionCards size="medium" title="Disney" videos={disneyVideos} />
       </div>
     </div>
   );
