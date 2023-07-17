@@ -3,14 +3,22 @@ import Head from "next/head";
 import Banner from "@/components/banner/banner";
 import NavBar from "@/components/navbar/navbar";
 import SectionCards from "@/components/sectioncards/sectioncards";
+import { getVideos } from "@/lib/videos";
 
 import styles from "@/styles/Home.module.css";
 
-export default function Home() {
-  const disneyVideos = Array.from(Array(10)).map((_, i) => ({
-    imgUrl: "/static/clifford.webp",
+export async function getServerSideProps() {
+  const fetchedVideos = await getVideos();
+  const videos = fetchedVideos.map((video) => ({
+    title: video.snippet.title,
+    imgUrl: video.snippet.thumbnails.high.url,
+    id: video.id.videoId,
   }));
 
+  return { props: { videos } };
+}
+
+export default function Home({ videos }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -24,8 +32,8 @@ export default function Home() {
         title="Clifford the Red Dog"
       />
       <div className={styles.sectionWrapper}>
-        <SectionCards size="large" title="Disney" videos={disneyVideos} />
-        <SectionCards size="medium" title="Disney" videos={disneyVideos} />
+        <SectionCards size="large" title="Disney" videos={videos} />
+        <SectionCards size="medium" title="Disney" videos={videos} />
       </div>
     </div>
   );
