@@ -8,17 +8,18 @@ import { getVideos } from "@/lib/videos";
 import styles from "@/styles/Home.module.css";
 
 export async function getServerSideProps() {
-  const fetchedVideos = await getVideos();
-  const videos = fetchedVideos.map((video) => ({
-    title: video.snippet.title,
-    imgUrl: video.snippet.thumbnails.high.url,
-    id: video.id.videoId,
-  }));
+  const disneyVideos = await getVideos("disney trailer");
+  const productivityVideos = await getVideos("productivity");
+  const travelVideos = await getVideos("travel");
 
-  return { props: { videos } };
+  return { props: { disneyVideos, productivityVideos, travelVideos } };
 }
 
-export default function Home({ videos }) {
+export default function Home({
+  disneyVideos,
+  productivityVideos,
+  travelVideos,
+}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -32,8 +33,14 @@ export default function Home({ videos }) {
         title="Clifford the Red Dog"
       />
       <div className={styles.sectionWrapper}>
-        <SectionCards size="large" title="Disney" videos={videos} />
-        <SectionCards size="medium" title="Disney" videos={videos} />
+        <SectionCards size="large" title="Disney" videos={disneyVideos} />
+        <SectionCards size="small" title="Travel" videos={travelVideos} />
+        <SectionCards
+          size="medium"
+          title="Productivity"
+          videos={productivityVideos}
+        />
+        <SectionCards size="small" title="Popular" videos={disneyVideos} />
       </div>
     </div>
   );
