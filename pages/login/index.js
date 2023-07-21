@@ -5,9 +5,9 @@ import Image from "next/image";
 import styles from "@/styles/Login.module.css";
 
 const Login = () => {
-  const handleOnClick = (e) => {
+  const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log("onClick");
+    console.log("onSubmit");
   };
 
   return (
@@ -32,15 +32,17 @@ const Login = () => {
       <main className={styles.main}>
         <div className={styles.mainWrapper}>
           <h1 className={styles.signinHeader}>Sign In</h1>
-          <input
-            className={styles.emailInput}
-            placeholder="Email Address"
-            type="email"
-          />
-          <p className={styles.userMsg}></p>
-          <button className={styles.loginBtn} onClick={handleOnClick}>
-            Sign In
-          </button>
+          <form onSubmit={handleOnSubmit}>
+            <input
+              className={styles.emailInput}
+              placeholder="Email Address"
+              type="email"
+            />
+            <p className={styles.userMsg}></p>
+            <button className={styles.loginBtn} type="submit">
+              Sign In
+            </button>
+          </form>
         </div>
       </main>
     </div>
