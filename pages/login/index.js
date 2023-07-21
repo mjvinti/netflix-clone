@@ -11,11 +11,11 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Head>
         <title>Netflix SignIn</title>
       </Head>
-      <header>
+      <header className={styles.header}>
         <div className={styles.headerWrapper}>
           <Link className={styles.logoLink} href="/">
             <div className={styles.logoWrapper}>
@@ -28,21 +28,21 @@ const Login = () => {
             </div>
           </Link>
         </div>
-        <main className={styles.main}>
-          <div className={styles.mainWrapper}>
-            <h1 className={styles.signinHeader}>Sign In</h1>
-            <input
-              className={styles.emailInput}
-              placeholder="Email Address"
-              type="email"
-            />
-            <p className={styles.userMsg}></p>
-            <button className={styles.loginBtn} onClick={handleOnClick}>
-              Sign In
-            </button>
-          </div>
-        </main>
       </header>
+      <main className={styles.main}>
+        <div className={styles.mainWrapper}>
+          <h1 className={styles.signinHeader}>Sign In</h1>
+          <input
+            className={styles.emailInput}
+            placeholder="Email Address"
+            type="email"
+          />
+          <p className={styles.userMsg}></p>
+          <button className={styles.loginBtn} onClick={handleOnClick}>
+            Sign In
+          </button>
+        </div>
+      </main>
     </div>
   );
 };
