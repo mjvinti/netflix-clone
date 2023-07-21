@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,9 +7,18 @@ import Image from "next/image";
 import styles from "@/styles/Login.module.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const { push } = useRouter();
+
+  const handleOnChange = (e) => setEmail(e.target.value);
+
   const handleOnSubmit = (e) => {
-    e.preventDefault();
     console.log("onSubmit");
+    e.preventDefault();
+
+    if (email.length) {
+      push("/");
+    }
   };
 
   return (
@@ -35,11 +46,15 @@ const Login = () => {
           <form onSubmit={handleOnSubmit}>
             <input
               className={styles.emailInput}
+              onChange={handleOnChange}
               placeholder="Email Address"
               type="email"
             />
-            <p className={styles.userMsg}></p>
-            <button className={styles.loginBtn} type="submit">
+            <button
+              className={styles.loginBtn}
+              disabled={!email.length}
+              type="submit"
+            >
               Sign In
             </button>
           </form>
