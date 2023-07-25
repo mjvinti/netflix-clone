@@ -1,11 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { magic } from "@/lib/magicClient";
+
 import styles from "./navbar.module.css";
 
-const NavBar = ({ username }) => {
+const NavBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    async function getUsername() {
+      try {
+        const { email } = await magic.user.getMetadata();
+        if (email) {
+          setUsername(email);
+        }
+      } catch (err) {
+        console.error("Error retrieving email:", err);
+      }
+    }
+    getUsername();
+  }, []);
 
   const handleOnClick = () => setShowDropdown(!showDropdown);
 
