@@ -10,6 +10,7 @@ import styles from "@/styles/Login.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { push } = useRouter();
 
   const handleOnChange = (e) => setEmail(e.target.value);
@@ -18,13 +19,16 @@ const Login = () => {
     e.preventDefault();
 
     if (email.length) {
+      setIsLoading(true);
       try {
         const didToken = await magic.auth.loginWithMagicLink({ email });
         if (didToken) {
           push("/");
         }
+        setIsLoading(false);
       } catch (err) {
         console.error("Something went wrong!", err);
+        setIsLoading(false);
       }
     }
   };
@@ -63,7 +67,7 @@ const Login = () => {
               disabled={!email.length}
               type="submit"
             >
-              Sign In
+              {isLoading ? "Loading..." : "Sign In"}
             </button>
           </form>
         </div>
