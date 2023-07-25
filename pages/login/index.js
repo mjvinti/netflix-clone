@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
@@ -11,7 +11,19 @@ import styles from "@/styles/Login.module.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { push } = useRouter();
+  const { events, push } = useRouter();
+
+  const handleComplete = () => setIsLoading(false);
+
+  useEffect(() => {
+    events.on("routeChangeComplete", handleComplete);
+    events.on("routeChangeError", handleComplete);
+
+    return () => {
+      events.off("routeChangeComplete", handleComplete);
+      events.off("routeChangeError", handleComplete);
+    };
+  }, [events]);
 
   const handleOnChange = (e) => setEmail(e.target.value);
 
@@ -25,7 +37,6 @@ const Login = () => {
         if (didToken) {
           push("/");
         }
-        setIsLoading(false);
       } catch (err) {
         console.error("Something went wrong!", err);
         setIsLoading(false);
