@@ -4,6 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
+import { magic } from "@/lib/magicClient";
+
 import styles from "@/styles/Login.module.css";
 
 const Login = () => {
@@ -12,12 +14,18 @@ const Login = () => {
 
   const handleOnChange = (e) => setEmail(e.target.value);
 
-  const handleOnSubmit = (e) => {
-    console.log("onSubmit");
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     if (email.length) {
-      push("/");
+      try {
+        const didToken = await magic.auth.loginWithMagicLink({ email });
+        if (didToken) {
+          push("/");
+        }
+      } catch (err) {
+        console.error("Something went wrong!", err);
+      }
     }
   };
 
