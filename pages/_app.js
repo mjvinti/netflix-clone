@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Roboto_Slab } from "@next/font/google";
 
@@ -9,7 +9,8 @@ import "@/styles/globals.css";
 const roboto = Roboto_Slab({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }) {
-  const { push } = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const { events, push } = useRouter();
 
   useEffect(() => {
     const isUserLoggedIn = async () => {
@@ -20,9 +21,21 @@ export default function App({ Component, pageProps }) {
     isUserLoggedIn();
   }, []);
 
+  const handleComplete = () => setIsLoading(false);
+
+  useEffect(() => {
+    events.on("routeChangeComplete", handleComplete);
+    events.on("routeChangeError", handleComplete);
+
+    return () => {
+      events.off("routeChangeComplete", handleComplete);
+      events.off("routeChangeError", handleComplete);
+    };
+  }, [events]);
+
   return (
     <main className={roboto.className}>
-      <Component {...pageProps} />
+      {isLoading ? <div>Loading...</div> : <Component {...pageProps} />}
     </main>
   );
 }
