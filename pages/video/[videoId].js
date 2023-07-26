@@ -1,5 +1,11 @@
+import { useRouter } from "next/router";
+
 const Video = () => {
-  return <div>Video</div>;
+  const {
+    query: { videoId },
+  } = useRouter();
+
+  return <div>Video {videoId}</div>;
 };
 
 export default Video;
