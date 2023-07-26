@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Roboto_Slab } from "@next/font/google";
 
+import Loading from "@/components/loading/loading";
 import { magic } from "@/lib/magicClient";
 
 import "@/styles/globals.css";
@@ -35,7 +36,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <main className={roboto.className}>
-      {isLoading ? <div>Loading...</div> : <Component {...pageProps} />}
+      {isLoading ? <Loading /> : <Component {...pageProps} />}
     </main>
   );
 }
