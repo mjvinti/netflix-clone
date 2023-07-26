@@ -33,6 +33,7 @@ export default function Home({
       <div className={styles.main}>
         <NavBar username="ankita@ank.com" />
         <Banner
+          videoId="4zH5iYM4wJo"
           imgUrl="/static/clifford.webp"
           subTitle="A Very Cute Dog"
           title="Clifford the Red Dog"
