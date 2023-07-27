@@ -12,9 +12,10 @@ const Video = () => {
   } = useRouter();
 
   return (
-    <div>
+    <div className={styles.container}>
       Video {videoId}
       <Modal
+        className={styles.modal}
         contentLabel="Watch the Video"
         isOpen={true}
         onRequestClose={() => back()}
