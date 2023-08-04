@@ -8,8 +8,8 @@ import styles from "@/styles/Video.module.css";
 
 Modal.setAppElement("#__next");
 
-export async function getStaticProps() {
-  const videoArr = await getVideoById("4zH5iYM4wJo");
+export async function getStaticProps({ params: { videoId } }) {
+  const videoArr = await getVideoById(videoId);
 
   return {
     props: { video: videoArr.length ? videoArr[0] : {} },
@@ -32,7 +32,13 @@ const Video = ({ video }) => {
     query: { videoId },
   } = useRouter();
 
-  const { title, publishTime, description, channelTitle, viewCount } = video;
+  const {
+    title,
+    publishTime,
+    description,
+    channelTitle,
+    viewCount = 0,
+  } = video;
 
   return (
     <div className={styles.container}>
