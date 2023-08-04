@@ -2,21 +2,19 @@ import { useRouter } from "next/router";
 import clsx from "classnames";
 import Modal from "react-modal";
 
+import { getVideoById } from "@/lib/videos";
+
 import styles from "@/styles/Video.module.css";
 
 Modal.setAppElement("#__next");
 
 export async function getStaticProps() {
-  const video = {
-    title: "Hi cute dog",
-    publishTime: "1990-01-01",
-    description:
-      "A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger?",
-    channelTitle: "Paramount Pictures",
-    viewCount: 10000,
-  };
+  const videoArr = await getVideoById("4zH5iYM4wJo");
 
-  return { props: { video }, revalidate: 10 };
+  return {
+    props: { video: videoArr.length ? videoArr[0] : {} },
+    revalidate: 10,
+  };
 }
 
 export async function getStaticPaths() {
