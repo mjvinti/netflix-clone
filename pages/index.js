@@ -1,7 +1,6 @@
 import Head from "next/head";
 
 import Banner from "@/components/banner/banner";
-import NavBar from "@/components/navbar/navbar";
 import SectionCards from "@/components/sectioncards/sectioncards";
 import { getPopularVideos, getVideos } from "@/lib/videos";
 
@@ -31,7 +30,6 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.main}>
-        <NavBar username="ankita@ank.com" />
         <Banner
           videoId="4zH5iYM4wJo"
           imgUrl="/static/clifford.webp"

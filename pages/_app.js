@@ -6,6 +6,7 @@ import Loading from "@/components/loading/loading";
 import { magic } from "@/lib/magicClient";
 
 import "@/styles/globals.css";
+import Layout from "@/components/layout/layout";
 
 const roboto = Roboto_Slab({ subsets: ["latin"] });
 
@@ -36,7 +37,13 @@ export default function App({ Component, pageProps }) {
 
   return (
     <main className={roboto.className}>
-      {isLoading ? <Loading /> : <Component {...pageProps} />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      )}
     </main>
   );
 }
